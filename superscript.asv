@@ -1,0 +1,11 @@
+function [] = superscript(dir, class)
+
+D = dir;
+I = cell(20, 1);
+j = 1;
+for i = 1 : size(D, 1)
+    if D(i).isdir == 0 && strncmp(D(i).name(1:numel(class)), class, numel(class))
+        disp(D(i).name);
+        I_temp = imread([D(i).
+    end
+end
