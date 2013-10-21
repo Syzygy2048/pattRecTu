@@ -1,3 +1,14 @@
+%{
+Dieses Skript lädt alle Bilder einer Klasse aus der MPEG7 Bilder Datenbank 
+ein und wertet die Eigenschaften der Bilder mittels regionprops aus.
+Das Skript kann z.B. über "superscript('bat')" aufgerufen werden.
+Wir haben uns für folgende Objektklassen entschieden:
+bat
+beetle
+cup
+device 9
+pencil
+%}
 function [] = superscript(class)
 
 dirname = 'MPEG7_CE-Shape-1_Part_B';
@@ -10,9 +21,9 @@ for i = 1 : size(D, 1)
         disp(D(i).name);
         I_temp = imread(strcat(dirname, '/', [D(i).name]));
         I{j} = im2bw(I_temp, graythresh(I_temp));
-        STATS{j} = 
+        STATS{j} = regionprops(I{j}, 'all');
         j = j+1;
     end
 end
 
-imshow(I{3});
+STATS{3}

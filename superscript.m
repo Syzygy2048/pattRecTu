@@ -1,3 +1,14 @@
+%{
+Dieses Skript lädt alle Bilder einer Klasse aus der MPEG7 Bilder Datenbank 
+ein und wertet die Eigenschaften der Bilder mittels regionprops aus.
+Das Skript kann z.B. über "superscript('bat')" aufgerufen werden.
+Wir haben uns für folgende Objektklassen entschieden:
+bat
+beetle
+cup
+device 9
+pencil
+%}
 function [] = superscript(class)
 
 dirname = 'MPEG7_CE-Shape-1_Part_B';
