@@ -16,9 +16,9 @@ classes = {'bat', 'beetle', 'cup', 'device9', 'pencil'};
 D = dir(dirname);
 I = cell(20, 1);
 L = cell(20, 1);
-R = zeros(20, 20);
-cTemp = cell(20, 5);
-Colors = {[255, 0, 0], [0, 255, 0], [0, 0, 255], [0, 0, 0], [255, 255, 0]};
+Roundness = zeros(20, 20);
+ConvexHull = zeros(20, 20);
+Solidity = zeros(20, 20)
 for h = 1 : numel(classes)
     j = 1;
     for i = 1 : size(D, 1)
@@ -28,8 +28,9 @@ for h = 1 : numel(classes)
             I{j} = im2bw(I_temp, graythresh(I_temp));
             L{j} = bwlabel(I{j}, 8);
             STATS = regionprops(L{j}, 'all');
-            R(j, h) = roundness(STATS(1).Area, STATS(1).Perimeter);
-            cTemp{j, h} = Colors{h};
+            Roundness(j, h) = roundness(STATS(1).Area, STATS(1).Perimeter);
+            Size = (STATS(1).ConvexHull);
+            ConvexHull(j, h) = Size(1);
             j = j+1;
         end
     end
@@ -38,14 +39,33 @@ end
 t = 1;
 for i = 1:5
     for j = 1:20
-        tempColor = Colors{i}
-        C(t, 1) = tempColor(1);
-        C(t, 2) = tempColor(2);
-        C(t, 3) = tempColor(3);
-        5*(i-1)+j
+        C(t) = i;
+        C(t) = i;
+        C(t) = i;
         t = t + 1;
     end
 end
-        size(C)
-        size(R(1,:))
-scatter(R(1,:), R(:,1), C);
+
+t=1;
+RoundnessValueVector = zeros(100, 1);
+for i = 1:5
+    for j = 1:20
+        RoundnessValueVector(t) = Roundness(j, i);
+        t = t + 1;
+    end
+end
+
+t=1;
+ConvexHullValueVector = zeros(100, 1);
+for i = 1:5
+    for j = 1:20
+        ConvexHullValueVector(t) = ConvexHull(j, i);
+        t = t + 1;
+    end
+end
+
+
+
+scatter(C, RoundnessValueVector);
+figure(2);
+scatter(C, ConvexHullValueVector);

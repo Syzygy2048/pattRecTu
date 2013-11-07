@@ -16,7 +16,10 @@ classes = {'bat', 'beetle', 'cup', 'device9', 'pencil'};
 D = dir(dirname);
 I = cell(20, 1);
 L = cell(20, 1);
-R = zeros(20, 20);
+Roundness = zeros(20, 20);
+ConvexHull = zeros(20, 20);
+Solidity = zeros(20, 20);
+Eccentricity = zeros(20, 20);
 for h = 1 : numel(classes)
     j = 1;
     for i = 1 : size(D, 1)
@@ -26,7 +29,11 @@ for h = 1 : numel(classes)
             I{j} = im2bw(I_temp, graythresh(I_temp));
             L{j} = bwlabel(I{j}, 8);
             STATS = regionprops(L{j}, 'all');
-            R(j, h) = roundness(STATS(1).Area, STATS(1).Perimeter);
+            Roundness(j, h) = roundness(STATS(1).Area, STATS(1).Perimeter);
+            Size = size(STATS(1).ConvexHull);
+            ConvexHull(j, h) = Size(1);
+            Solidity(j, h) = STATS(1).Solidity;
+            Eccentricity(j, h) = STATS(1).Eccentricity;
             j = j+1;
         end
     end
@@ -43,13 +50,46 @@ for i = 1:5
 end
 
 t=1;
-valueVector = zeros(100, 1);
+RoundnessValueVector = zeros(100, 1);
 for i = 1:5
     for j = 1:20
-        valueVector(t) = R(j, i);
+        RoundnessValueVector(t) = Roundness(j, i);
         t = t + 1;
     end
 end
-valueVector
-C
-scatter(C, valueVector);
+
+t=1;
+ConvexHullValueVector = zeros(100, 1);
+for i = 1:5
+    for j = 1:20
+        ConvexHullValueVector(t) = ConvexHull(j, i);
+        t = t + 1;
+    end
+end
+
+t=1;
+SolidityValueVector = zeros(100, 1);
+for i = 1:5
+    for j = 1:20
+        SolidityValueVector(t) = Solidity(j, i);
+        t = t + 1;
+    end
+end
+
+t=1;
+EccentricityValueVector = zeros(100, 1);
+for i = 1:5
+    for j = 1:20
+        EccentricityValueVector(t) = Eccentricity(j, i);
+        t = t + 1;
+    end
+end
+
+figure(1);
+scatter(C, RoundnessValueVector);
+figure(2);
+scatter(C, ConvexHullValueVector);
+figure(3);
+scatter(C, SolidityValueVector);
+figure(4);
+scatter(C, EccentricityValueVector);
