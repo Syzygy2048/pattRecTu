@@ -44,17 +44,21 @@ end
 
 for i=1 : size(FeatureVectors)
     if FeatureVectors{i}{4} < 0.75 
-		if FeatureVectors{i}{2} > 0.012
+		if FeatureVectors{i}{2} > 0.011
 			FeatureVectors{i}{6} = 'bat';
-		else if FeatureVectors{i}{5} < 0.88
+		elseif FeatureVectors{i}{5} < 0.88
 			FeatureVectors{i}{6} = 'beetle';
 		else
 			FeatureVectors{i}{6} = 'bat';
 		end		
-	else if FeatureVectors{i}{5} > 0.96
+	elseif FeatureVectors{i}{5} > 0.96
 		FeatureVectors{i}{6} = 'pencil';
-	else if FeatureVectors{i}{5} < 0.46 and FeatureVectors{i}{3} > 300
-		FeatureVectors{i}{6} = 'device9';
+	elseif FeatureVectors{i}{5} < 0.46 
+		if FeatureVectors{i}{3} > 300
+            FeatureVectors{i}{6} = 'device9';
+        else
+            FeatureVectors{i}{6} = 'cup';
+        end
 	else
 		FeatureVectors{i}{6} = 'cup';
 	end
@@ -62,10 +66,11 @@ end
 
 correct = 0;
 for i = 1 : size(FeatureVectors)
-	if FeatureVectors{i}{1} = FeatureVectors{i}{6}
+	if strcmp(FeatureVectors{i}{1}, FeatureVectors{i}{6})
 		correct = correct + 1;
 	else
-		disp(i + ' ' + FeatureVectors{i}{1} + ' is classified as ' + FeatureVectors{i}{6});
+		disp(sprintf('%i, %s is classified as %s', i,FeatureVectors{i}{1}, FeatureVectors{i}{6}));
 	end
 end
-disp('correct = ' + correct/size(FeatureVectors));
+disp(sprintf('correct = %f', correct/size(FeatureVectors,1)));
+
