@@ -44,17 +44,17 @@ end
 
 for i=1 : size(FeatureVectors)
     if FeatureVectors{i}{4} < 0.75 
-		if FeatureVectors{i}{2} > 0.011
+		if FeatureVectors{i}{2} > 0.015
 			FeatureVectors{i}{6} = 'bat';
-		elseif FeatureVectors{i}{5} < 0.88
+		elseif FeatureVectors{i}{5} < 0.91
 			FeatureVectors{i}{6} = 'beetle';
 		else
 			FeatureVectors{i}{6} = 'bat';
 		end		
 	elseif FeatureVectors{i}{5} > 0.96
 		FeatureVectors{i}{6} = 'pencil';
-	elseif FeatureVectors{i}{5} < 0.46 
-		if FeatureVectors{i}{3} > 300
+	elseif FeatureVectors{i}{5} < 0.50 
+		if FeatureVectors{i}{3} > 250
             FeatureVectors{i}{6} = 'device9';
         else
             FeatureVectors{i}{6} = 'cup';
