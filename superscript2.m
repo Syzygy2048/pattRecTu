@@ -42,6 +42,12 @@ for h = 1 : numel(classes)
     end
 end
 
-kNN(FeatureVectors, 20)
+errors = zeros(20,1);
+for i=1:20
+    errors(i) = kNN(FeatureVectors, i);
+end
+
+plot(errors);
+errors
 
 end

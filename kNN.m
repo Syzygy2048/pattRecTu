@@ -20,12 +20,12 @@ for i = 1:s(1)
         end
     end
     correct = correct + checkIfCorrect(nearestNeighbours, testCandidate{1});
-    i
-    testCandidate{1}
-    correct/i
 end
 
 'total'
+k
 correct/s(1)
+
+error = 1-(correct/s(1));
 
 end
