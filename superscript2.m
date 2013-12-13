@@ -16,7 +16,7 @@ classes = {'bat', 'beetle', 'cup', 'device9', 'pencil'};
 D = dir(dirname);
 I = cell(20, 1);
 L = cell(20, 1);
-FeatureVectors = cell(20, 1);
+FeatureVectors = cell(100, 1);
 
 t = 1;
 for h = 1 : numel(classes)

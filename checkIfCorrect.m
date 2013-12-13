@@ -1,5 +1,6 @@
 function [correct] = checkIfCorrect(nearestNeighbours, reference)
 
+
 s = size(nearestNeighbours);
 nn = cell(s(1), 1);
 
