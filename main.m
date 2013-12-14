@@ -35,4 +35,5 @@ for i = 1:size(M,1)
 	end
 end
 
-mahalanobis(trainA, trainB, trainC, test);
+error = mahalanobis(trainA, trainB, trainC, test);
+error
