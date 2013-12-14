@@ -5,7 +5,6 @@
 	number of columns, but can have different numbers of rows. X must have more rows than columns.
 	
 %}
-
 function [error] = mahalanobis(trainA, trainB, trainC, test)
 	meanA = mean(trainA(:,:)); %normally you should do mean(trainA(:,2:end)) to not average the class, but since the class is always the same, it doesn't matter
 	meanB = mean(trainB(:,:)); %same
@@ -35,13 +34,15 @@ function [error] = mahalanobis(trainA, trainB, trainC, test)
 	cov = diag(cov);
 	
 	%For observation I, the Mahalanobis distance is defined by d(I) = (Y(I,:)-mu)*inv(SIGMA)*(Y(I,:)-mu)', where mu and SIGMA are the
-	%sample mean and covariance of the data in X.
-	dist = 0;
+	%sample mean and covariance of the data in X. (matlab)
+	%If the covariance matrix is diagonal, then the resulting distance measure is called a normalized Euclidean distance. (wiki)
 	correct = 0;
 	for i = 1:size(test,1)
 		distA = (test(i,2:end) - meanA(2:end)) * inv(cov) * (test(i,2:end) - meanA(2:end))';
 		distB = (test(i,2:end) - meanB(2:end)) * inv(cov) * (test(i,2:end) - meanB(2:end))';
 		distC = (test(i,2:end) - meanC(2:end)) * inv(cov) * (test(i,2:end) - meanC(2:end))';
+		
+		%check if classified correctly
 		if distA < distB && distA < distC
 			if test(i,1) == 1
 				correct = correct + 1;
@@ -56,7 +57,6 @@ function [error] = mahalanobis(trainA, trainB, trainC, test)
 			end
 		end			
 	end
-	
 	
 	fprintf(1,'%d of %d samples correctly classified', correct, size(test,1));
 
