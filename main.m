@@ -37,3 +37,5 @@ end
 
 error = mahalanobis(trainA, trainB, trainC, test);
 error
+
+discriminant();
