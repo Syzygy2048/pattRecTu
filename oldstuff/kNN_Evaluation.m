@@ -1,8 +1,8 @@
 function [] = kNN_Evaluation(k)
 
-wineData = csvread('dataset/wine.data');
+wineData = csvread('wine.data');
 
-numberOfNearestNeighbours = 9;
+numberOfNearestNeighbours = 5;
 k = numberOfNearestNeighbours;
 
 % normalize data
