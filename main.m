@@ -1,42 +1,20 @@
 %{
-	%} 
+%}
 
-%data is read into a matrix, each row is a data set, each column is a specific attribute, first column is class
-M = csvread('wine.data');
 
-%kNN evauluation is done first, it reads the data individually because our team lacks communication.
-disp('kNN: ');
-kNN_Evaluation();
-
-%normalizing all values
-for i = 2:size(M,2)
-	M(:,i) = M(:,i)/norm(M(:,i));
-end
-
-%splitting the values into a test and trainings set for mahalanobis
-% The dataset consists of 178 instances, such that the class 1 has 59 samples; class 2 has 71 samples; and class 3 has 48 samples. 
-trainA = [];
-trainB = [];
-trainC = [];
-test = [];
-for i = 1:size(M,1)
-	if(i<30)
-		trainA = [trainA; M(i,:)];
-    elseif(i < 60)
-		test = [test; M(i,:)];
-    elseif(i < 95)
-		trainB = [trainB; M(i,:)];
-    elseif(i < 131)
-		test = [test; M(i,:)];
-    elseif(i < 155)
-		trainC = [trainC; M(i,:)];
-	else
-		test = [test; M(i,:)];
+data = load('data/perceptrondata.dat');
+learndata1 = load('data/perceptrontarget1.dat'); 
+learndata2 = load('data/perceptrontarget2.dat');
+for i = 1:size(learndata1,1)
+	if ~learndata1(i)
+		learndata1(i) = -1;
+	end
+	if ~learndata2(i)
+		learndata1(i) = -1;
 	end
 end
-disp('mahalanobis: ');
-error = mahalanobis(trainA, trainB, trainC, test);
-error
 
-disp('discriminant function: ');
-discriminant();
+
+
+disp(perco(data, learndata1));
+disp(perco(data, learndata2));
