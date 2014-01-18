@@ -2,7 +2,7 @@
 %}
 
 
-%{
+
 data = load('data/perceptrondata.dat');
 learndata1 = load('data/perceptrontarget1.dat'); 
 learndata2 = load('data/perceptrontarget2.dat');
@@ -16,10 +16,10 @@ for i = 1:size(learndata1,1)
 	end
 end
 
-perco(data, learndata1, 100000);
-perco(data, learndata2, 100000);
-%}
+disp(transpose(perco(data, learndata1, 9)));
+disp(transpose(perco(data, learndata2, 2)));
 
+%{
 load('data/strokefeatures.mat');
 data = features_class(:, 1:20);
 
@@ -65,3 +65,4 @@ end
 
 kNN(testSet, trainingSet, testClasses, trainingClasses, 3);
 
+%}
