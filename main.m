@@ -10,11 +10,9 @@ for i = 1:size(learndata1,1)
 		learndata1(i) = -1;
 	end
 	if ~learndata2(i)
-		learndata1(i) = -1;
+		learndata2(i) = -1;
 	end
 end
 
-
-
-disp(perco(data, learndata1));
-disp(perco(data, learndata2));
+perco(data, learndata1, 10000);
+perco(data, learndata2, 10000);
