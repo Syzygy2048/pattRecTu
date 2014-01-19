@@ -29,18 +29,8 @@ function [weight] = perco(X,t, maxEpoches)
 	scatter(X(:,2),X(:,3),50,t,'fill');
 	hold on;
 	
-	%startpos = (0,0) + norm(vector) * offset; endpos = (0,0) + normal * length + norm(vector) * offset
-	%disp(weight(2:end));
-	%disp(norm(weight(2:end)));
-	%disp(weight(2:end)/norm(weight(2:end)));
-	%disp(weight(2:end)/norm(weight(2:end)) * -weight(1));
-	sigm = atand(weight(2)/weight(3));
+	f = @(x) (weight(1)+x*weight(2))*-1 / weight(3)
+	ezplot(f,[0 1 0 1]);
     
-    x=[0,1];
-    y = (-weight(1) - weight(2)*x)/weight(3);
-    plot(x,y);
-    
-	%line([x1 x2], [y1 y2]);	
-	%plot(p1, [x2 y2]);
 	hold off;
 end
