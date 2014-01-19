@@ -66,13 +66,28 @@ d(\vec{x},\vec{y}) = \sqrt{(\vec{x}-\vec{y})^TS^{-1}(\vec{x}-\vec{y})}
 The Mahalanobis distance is mostly used in cluster analysis and classification techniques, for instance to detect outliers in the development of linear regression models, and was also widely used in biology.
 \pagebreak
 
-\section{Perceptron stuff}
+\section{Perceptron}
 
 Hier kommt die erste Aufgabe hin
 
 Apply the perceptron to the following problems: OR, AND and XOR. Do not
 forget to convert your training vectors into homogeneous co ordinates. Discuss
 the results and the convergence of the algorithm. 
+
+Our algorithm works well for linearly separable problems like AND and OR. As expected the algorithm is not able to fully classify XOR since it's not linearly separable.
+The lines calculated by our algorithm were calculated as shown in the following images.
+
+Points that are classified as +1 and therefore supposed to be above the line are shown in red, points that were supposed to be -1 and below or on the line are shown in blue.
+
+\includegraphics[scale=0.5]{img/and_correct}
+\includegraphics[scale=0.5]{img/or_correct}
+
+
+The following images show a dataset of 200 entries with the points classified differently. The image on the left has the points classified in a way so that they're linearly separable and our algorithm performs ideally, while the points in the image on the right are scattered in a way that they can't be distinquished by a line. The drawn line separates the points in a way that 142 of them are classified correctly.
+
+
+\includegraphics[scale=0.5]{img/200_of_200_correct}
+\includegraphics[scale=0.5]{img/142_of_200_correct}
 
 \section{Practical Application}
 
