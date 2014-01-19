@@ -1,0 +1,123 @@
+\documentclass{article}
+%\documentclass[journal]{IEEEtran}
+%\documentclass{report}
+%\documentclass{acta}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+
+\begin{document}
+
+\title{Introduction to the Perceptron and the application of pattern recogition techniques on real world problems}
+\author{Peter Pollak, Stefan Sietzen, Albrecht Völkl}
+
+\maketitle
+
+\begin{abstract}
+In the following article, we will discuss the application of the Perceptron to calculate the weight vector for a specific training set. We will also show an example of applying different pattern recognition techniques on a real world problem.
+\end{abstract}
+
+
+\section{Theory of the used techniques}
+
+First we are going to explain what a Perceptron is and which pattern recogition techniques we have used in our research.
+
+\subsection{Perceptron}
+
+The perceptron was invented in 1957 by Frank Rosenblatt and is a type of a linear classifier, which means that it makes its predictions based on a linear predictor function combining a set of weights with the feature vector. 
+\\The perceptron maps its input value \emph{x} to an output value \emph{f(x)} using the function
+\\
+
+
+\begin{equation}
+f(x) = \begin{cases} 
+    1, & \mbox{if } w \cdot x+b \mbox{ \textgreater \ 0} 
+    \\ 
+    0, & \mbox{otherwise }
+\end{cases}
+\end{equation}
+\\
+
+In this function, \emph{w} 	decribes a vector of real-valued weights, while $w \cdot x$ is the dot product, and \emph{b} is the constant \emph{\textbf{bias}} which is independent from any input value. Depending on whether the value of \emph{f(x)} is 0 or 1, x is classified either as a positive or negative instance,if we are dealing with a binary classificaton problem. If a negative value is chosen for \emph{b}, the weighted combination of inputs must provide a greater value than $|b|$ to be able to be able to reach a valoue over 0. In general, the bias alters the position of the decision boundary.
+\\
+A problem with the perceptron algorithm is that it won't terminate if if the learning set is not linearly seperable. If that is not the case, it is not possible to classify all vectors properly. A famous example for that problem is the \emph{Boolean Exclusive-Or problem}. 
+\\
+If the pereceptron is used in context of artifical neural networks, it is used an artificial neuron which is using the \emph{Heaviside step function} as the activation function. In combination with neural networks, one must also differ between a \textbf{single-layer-perceptron} and a \textbf{multi-layer-perceptron}. While a SLP consists of just a single layer of nodes in a directed graph, the MLP can work with several layers together.
+
+\subsection{kNN Classifier}
+
+The \emph{k-Nearest Neighbors Algorithm} is a non-parametric method which can be used for classification and regression. In our work, we have only experimented with the kNN algorithm as classifier. In this case, the output of the algorithm is a class membership where an object is classified by its neighbors. The new object checks which class is most common among it's $k$ nearest neighbors and is then assigned to that class. 
+
+\subsection{Mahalanobis Distance}
+
+The Mahalanobis Distance is a descriptive statistic that provides a relative measure of a data point's distance from a common point and was introduced by P.C. Mahalanobis in 1936. It can be defined in several ways, either by a distance of a multivariate vector $x$ from a group of values with mean $\mu$ and a covariance matrix $s$
+\\
+\begin{equation}
+D_M(x) = \sqrt{(x-\mu)^TS^{-1}(x-\mu)}
+\end{equation}
+\\
+or as a dissimilarity measure between two random vectors $\vec{x}$ and $\vec{y}$ of the same distribution with the covariance matrix S.
+
+\begin{equation}
+d(\vec{x},\vec{y}) = \sqrt{(\vec{x}-\vec{y})^TS^{-1}(\vec{x}-\vec{y})}
+\end{equation}
+\\
+The Mahalanobis distance is mostly used in cluster analysis and classification techniques, for instance to detect outliers in the development of linear regression models, and was also widely used in biology.
+\pagebreak
+
+\section{Perceptron stuff}
+
+Apply the perceptron to the following problems: OR, AND and XOR. Do not
+forget to convert your training vectors into homogeneous co ordinates. Discuss
+the results and the convergence of the algorithm. 
+
+\section{Practical Application}
+
+Hier kommt dann rein was wir jetzt vorhaben
+
+\subsection{Perceptron Stuff}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{kNN Stuff}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\subsection{Mahalanobis stuff}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Comparison Perceptron / Pattern Recognition}
+
+Prepare a scientific report comparing the performance of the three classification
+algorithms on your chosen dataset on the two problems describ d above. In-
+clude graphs showing the different classification rates. Discuss and interpret the
+results. Can you think of good reasons for the different results produced by the
+different classifers? Which combination of the 10 rejected infrared light wave-
+lengths (column 1-10 at file strokefeatures.mat) leads to the best results?
+Does using fewer features improve the p erformance? What is a good way to
+chose the best features to keep? Is you classifer good enough to be used in real
+life? Your discussion should be precise and scientific. 
+
+\section{Extra-Aufgabe?}
+
+\section{Conclusion}
+
+
+\end{document}
