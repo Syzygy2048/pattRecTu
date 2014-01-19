@@ -35,14 +35,12 @@ function [weight] = perco(X,t, maxEpoches)
 	%disp(weight(2:end)/norm(weight(2:end)));
 	%disp(weight(2:end)/norm(weight(2:end)) * -weight(1));
 	sigm = atand(weight(2)/weight(3));
-	
-	
-	p1 = weight(2:end)/norm(weight(2:3));%/norm(weight(2:end)) * -weight(1);
-	x1 = 0 %-weight(1) * p1(1) - weight(3);
-	y1 = p1(2) + weight(2);
-	x2 = -weight(3) * norm(weight(2:end)) + p1(1) 	+ weight(3);
-	y2 = weight(2) * norm(weight(2:end)) + p1(2) 	- weight(2);
-	line([x1 x2], [y1 y2]);	
+    
+    x=[0,1];
+    y = (-weight(1) - weight(2)*x)/weight(3);
+    plot(x,y);
+    
+	%line([x1 x2], [y1 y2]);	
 	%plot(p1, [x2 y2]);
 	hold off;
 end
