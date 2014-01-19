@@ -1,6 +1,14 @@
 %{
 %}
 
+simpleData = [0 0; 0 1; 1 0; 1 1];
+and = [-1; -1; -1; -1];
+or = [-1; 1; 1; 1];
+xor = [-1; 1; 1; -1];
+
+disp(transpose(perco(simpleData, and, 50)));
+disp(transpose(perco(simpleData, or, 50)));
+disp(transpose(perco(simpleData, xor, 50)));
 
 
 data = load('data/perceptrondata.dat');
@@ -17,7 +25,7 @@ for i = 1:size(learndata1,1)
 end
 
 disp(transpose(perco(data, learndata1, 9)));
-disp(transpose(perco(data, learndata2, 2)));
+disp(transpose(perco(data, learndata2, 3)));
 
 %{
 load('data/strokefeatures.mat');
