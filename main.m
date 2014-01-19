@@ -1,5 +1,4 @@
 %{
-%}
 
 simpleData = [0 0; 0 1; 1 0; 1 1];
 and = [-1; -1; -1; 1];
@@ -27,7 +26,7 @@ end
 disp(transpose(perco(data, learndata1, 9)));
 disp(transpose(perco(data, learndata2, 3)));
 
-%{
+%}
 load('data/strokefeatures.mat');
 data = features_class(:, 1:20);
 
@@ -39,7 +38,7 @@ s = size(data);
 
 classes = features_class(:, 21);
 
-classes = classes(1:s(1)-1,:);
+classes = classes(1:s(1),:);
 
 % normalize data
 for i=1:s(2)
@@ -56,7 +55,7 @@ for i=1:s(1)/2
    for j=1:s(2)
       testSet(i,j) = data(i*2, j);
    end
-   testClasses(i) = data(i*2);   
+   testClasses(i) = classes(i*2);   
 end
 
 % create traing set
@@ -68,9 +67,29 @@ for i=1:s(1)/2
    for j=1:s(2)
       trainingSet(i,j) = data(i*2-1, j); 
    end
-   trainingClasses(i) = data(i*2-1);   
+   trainingClasses(i) = classes(i*2-1);   
 end
 
-kNN(testSet, trainingSet, testClasses, trainingClasses, 3);
+%kNN(testSet, trainingSet, testClasses, trainingClasses, 3);
+
+percoTestClasses = testClasses;
+percoTrainingClasses = trainingClasses;
+
+for i=1:s(1)/2
+      if percoTestClasses(i) <= 3
+         percoTestClasses(i) = -1;
+      else
+         percoTestClasses(i) = 1; 
+      end
+      if percoTrainingClasses(i) <= 3
+         percoTrainingClasses(i) = -1;
+      else
+         percoTrainingClasses(i) = 1; 
+      end
+end
+
+mahalanobis(trainingSet, testSet, trainingClasses, testClasses);
+%perco(trainingSet, percoTrainingClasses, testSet, percoTestClasses, 1000);
+%kNN(testSet, trainingSet, percoTrainingClasses, percoTrainingClasses, 3);
 
 %}
