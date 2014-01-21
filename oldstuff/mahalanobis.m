@@ -9,6 +9,8 @@ function [error] = mahalanobis(trainA, trainB, trainC, test)
 	meanA = mean(trainA(:,:)); %normally you should do mean(trainA(:,2:end)) to not average the class, but since the class is always the same, it doesn't matter
 	meanB = mean(trainB(:,:)); %same
 	meanC = mean(trainC(:,:)); %same
+    
+    
 
 	%The covariance matrices are diagonal. To implement this, the off-diagonal elements of each matrix are simply set to zero.
 	% --> so basically all we need is the variance of each of the 13 attributes

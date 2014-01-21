@@ -88,7 +88,7 @@ for i=1:s(1)/2
       end
 end
 
-mahalanobis(trainingSet, testSet, trainingClasses, testClasses);
+mahalanobis(testSet, trainingSet, testClasses, trainingClasses);
 %perco(trainingSet, percoTrainingClasses, testSet, percoTestClasses, 1000);
 %kNN(testSet, trainingSet, percoTrainingClasses, percoTrainingClasses, 3);
 
