@@ -10,7 +10,7 @@
 \begin{document}
 
 \title{Introduction to the Perceptron and the application of pattern recogition techniques on real world problems}
-\author{Peter Pollak, Stefan Sietzen, Albrecht Völkl}
+\author{Peter Pollak, Stefan Sietzen, Albrecht V\"olkl}
 
 \maketitle
 
@@ -68,64 +68,86 @@ The Mahalanobis distance is mostly used in cluster analysis and classification t
 
 \section{Perceptron}
 
-Hier kommt die erste Aufgabe hin
+Implementing the preceptron, aside from the learnrate, doesn't leave much space for varation. Therefore it was no surprise, that our implementation had a 100 percent success rate applying it to the "perceptrondata" dataset with the target "perceptrontarget", which is a linearly sepearable combination. 
 
-Apply the perceptron to the following problems: OR, AND and XOR. Do not
-forget to convert your training vectors into homogeneous co ordinates. Discuss
-the results and the convergence of the algorithm. 
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{200_of_200_correct}
+    \caption{200 out of 200 correct}
+    \label{200of200correct}
+\end{figure}
 
-Our algorithm works well for linearly separable problems like AND and OR. As expected the algorithm is not able to fully classify XOR since it's not linearly separable.
-The lines calculated by our algorithm were calculated as shown in the following images.
+The not linearly seperable "perceptrontarget2" had a success rate of 142/200, which is the maximum achievable with a linear discriminator.
 
-Points that are classified as +1 and therefore supposed to be above the line are shown in red, points that were supposed to be -1 and below or on the line are shown in blue.
-
-\includegraphics[scale=0.5]{img/and_correct}
-\includegraphics[scale=0.5]{img/or_correct}
-
-
-The following images show a dataset of 200 entries with the points classified differently. The image on the left has the points classified in a way so that they're linearly separable and our algorithm performs ideally, while the points in the image on the right are scattered in a way that they can't be distinquished by a line. The drawn line separates the points in a way that 142 of them are classified correctly.
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{142_of_200_correct}
+    \caption{142 out of 200 correct}
+    \label{142of200correct}
+\end{figure}
 
 
-\includegraphics[scale=0.5]{img/200_of_200_correct}
-\includegraphics[scale=0.5]{img/142_of_200_correct}
+The AND problem and the OR problem, which are obviously linearly seperable, where no problem for our perceptron function, while the XOR problem, as expected, didn't produce a valid result
+
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{and_correct}
+    \caption{AND problem}
+    \label{andproblem}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{or_correct}
+    \caption{OR problem}
+    \label{orproblem}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{xor_wtf}
+    \caption{XOR problem}
+    \label{xorproblem}
+\end{figure}
+
 
 \section{Practical Application}
 
-Hier erklären wir was wir jetzt vorhaben, wie die Trainingssets bzw Eingangsdaten aussehen und was dann hoffentlich passieren wird / was wir versuchen herauszufinden
+When applying the 3 different classificators to a real world problem, we noticed, that our kNN algorithm outperformed the perceptron and the mahalanobis classificators. 
 
-Prepare a scientific report comparing the performance of the three classification
-algorithms on your chosen dataset on the two problems describ d above. In-
-clude graphs showing the different classification rates. Discuss and interpret the
-results. Can you think of good reasons for the different results produced by the
-different classifers? Which combination of the 10 rejected infrared light wave-
-lengths (column 1-10 at file strokefeatures.mat) leads to the best results?
-Does using fewer features improve the p erformance? What is a good way to
-chose the best features to keep? Is you classifer good enough to be used in real
-life? Your discussion should be precise and scientific. 
+\subsection{Perceptron}
 
-\subsection{Perceptron Stuff}
+The problem with the perceptron in this case are the 6 different classes, which the perceptron is not suited for. We therefore used the perceptron to just classify between the dry and the wet strokes, where it had an acceptable success rate of around 80 percent. By reducing the feautures, we could achieve a successs rate of 86 percent.
 
-Wie hat das ganze mit Perceptron funktioniert. Verwendete Datasets, Eingaben, Ausgaben, Analyse der Ausgaben: wie richtig ist das ganze, funktioniert es in allen Fällen oder in manchen nicht? Wo (mit welchen Sets / Eingaben) funktioniert es besser, wo schlechter?
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{perceptron_feature_number_successrate}
+    \caption{Perceptron Feature Number Successrate}
+    \label{perceptron}
+\end{figure}
 
-\subsection{kNN Stuff}
+We therefore assume, that the stroke classification is not perfectly solvable with a linear discriminator, like the combination of "perceptrondata" and "percenptrontarget2", where there was only a success rate of 142/200 compared to the linearly discriminable "perceptrontarget", where the successrate of our perceptron implementation was 100 percent.
 
-Same for kNN
+\subsection{kNN Classifier}
 
-\subsection{Mahalanobis stuff}
+The kNN on the other hand, despite it simplicity performed really well, already giving 51 percent correct results at k=1, going to 87 percent correct results with k=6
 
-same for mahalanobis
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{kNN_graph}
+    \caption{kNN graph}
+    \label{knngraph}
+\end{figure}
 
-\section{Comparison Perceptron / Pattern Recognition}
+Also note that different feature sets gave different results. When initially using all 20 features for classification, we got a success rate of 82 percent, by selecting the best features we could raise that percentage to 87 percent with k=6. We did that by first selecting the best performing single feature set and then successively always the best combination with one more feature. We found that a combination of 7 features gave us good results.
 
-Wie haben die Methoden im Vergleich zueinander abgeschnitten? Wo lagen bei ihnen SChwächen und Stärken? Genauigkeit? 
+\subsection{Mahalanobis Distance0}
 
+The mahalanobis distance classificicator was really disappointing in this application, it only achieved a success rate of 9/77 correct classifications applied to the stroke problem. we didn't find out why this was the case, but we assume that it could be tweaked by selecting a beter featureset. The complexity and high dimensionaliaty of this classification problem is apparently not suited to apply a mahalanobis-distance classificator rather naively to.
 
-\section{Extra-Aufgabe?}
+\section{Comparison of the Perceptron and Pattern Recognition Algorithms}
 
-\section{Conclusion}
-
-Hier kommt dann noch ne kurze Zusammenfasung rein.
-
+Conclusively the kNN algorithm was best suited for the application with the stroke images, as it produced good results even before feature reduction. The perceptron is really limited in its application, due to its binary nature. It did perform well on discriminating dry and wet strokes though. The mahalanobis was not suited very well to applying it without feature reduction in this problem, even when reducing the features it didn't improve near to an acceptable sucess rate.
 
 
 \end{document}
