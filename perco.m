@@ -32,7 +32,6 @@ function [weight] = perco(trainingSet,trainingClasses, testSet, testClasses, max
             end
     end
 	
-    'asdasd'
     testCorrect/size(X,1)
 	
 	fprintf(1,'%d of %d samples correctly classified\n', sum(correct), size(X,1));

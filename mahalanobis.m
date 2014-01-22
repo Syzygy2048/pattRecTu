@@ -41,32 +41,32 @@ function [error] = mahalanobis(testData, trainingData, testClasses, trainingClas
 
 	%The covariance matrices are diagonal. To implement this, the off-diagonal elements of each matrix are simply set to zero.
 	% --> so basically all we need is the variance of each of the 13 attributes
-	var1 = zeros(1, 20);
+	var1 = zeros(1, size(testData, 2));
 	for i = 1:size(trainingClass1,1)
 		var1 = var1 + (trainingClass1(i,:)-mean1).^2;
 	end
 	
-	var2 = zeros(1, 20);
+	var2 = zeros(1, size(testData, 2));
 	for i = 1:size(trainingClass2,1)
 		var2 = var2 + (trainingClass2(i,:)-mean2).^2;
 	end
 	
-	var3 = zeros(1, 20);
+	var3 = zeros(1, size(testData, 2));
 	for i = 1:size(trainingClass3,1)
 		var3 = var3 + (trainingClass3(i,:)-mean3).^2;
     end
     
-    var4 = zeros(1, 20);
+    var4 = zeros(1, size(testData, 2));
 	for i = 1:size(trainingClass4,1)
 		var4 = var4 + (trainingClass4(i,:)-mean4).^2;
     end
     
-    var5 = zeros(1, 20);
+    var5 = zeros(1, size(testData, 2));
 	for i = 1:size(trainingClass5,1)
 		var5 = var5 + (trainingClass5(i,:)-mean5).^2;
     end
     
-    var6 = zeros(1, 20);
+    var6 = zeros(1, size(testData, 2));
 	for i = 1:size(trainingClass6,1)
 		var6 = var6 + (trainingClass6(i,:)-mean6).^2;
 	end
@@ -95,26 +95,32 @@ function [error] = mahalanobis(testData, trainingData, testClasses, trainingClas
 		if dist1 == min(dists)
 			if testClasses(i,1) == 1
 				correct = correct + 1;
+                1
 			end
 		elseif dist2 == min(dists)
 			if testClasses(i,1) == 2
 				correct = correct + 1;
+                2
             end
         elseif dist3 == min(dists)
 			if testClasses(i,1) == 3
 				correct = correct + 1;
+                3
             end
         elseif dist4 == min(dists)
 			if testClasses(i,1) == 4
 				correct = correct + 1;
+                4
             end
         elseif dist5 == min(dists)
 			if testClasses(i,1) == 5
 				correct = correct + 1;
+                5
 			end
 		else
 			if testClasses(i,1) == 6
 				correct = correct + 1;
+                6
 			end
 		end			
 	end
